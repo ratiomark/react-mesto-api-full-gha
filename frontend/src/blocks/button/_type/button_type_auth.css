@@ -1,0 +1,11 @@
+
+.button_type_auth{
+  border: none;
+  width: 358px;
+  color: #000000;
+  background-color: white;
+  border-radius: 2px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  padding-top: 14px;
+}

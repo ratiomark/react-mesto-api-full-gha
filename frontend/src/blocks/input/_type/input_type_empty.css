@@ -1,0 +1,14 @@
+.input_type_empty{
+  background-color: transparent;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 30px;
+  color: #CCCCCC;
+  outline: none;
+}
+.input_type_empty:focus {
+  border-bottom: 1px solid rgb(102, 115, 218);
+}
+.input_type_empty:last-of-type{
+  margin-bottom: 200px;
+}

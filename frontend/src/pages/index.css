@@ -1,0 +1,79 @@
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts/fonts.css");
+@import url("../blocks/body/body.css");
+@import url("../blocks/page/page.css");
+@import url("../blocks/page/__header/page__header.css");
+@import url("../blocks/page/__profile/page__profile.css");
+@import url("../blocks/page/__main/page__main.css");
+@import url("../blocks/page/__signUp/page__signUp.css");
+@import url("../blocks/page/__inputs/page__inputs.css");
+@import url("../blocks/page/__link/page__link.css");
+@import url("../blocks/page/__title/page__title.css");
+
+
+@import url("../blocks/header/header.css");
+@import url("../blocks/header/__logo/header__logo.css");
+@import url("../blocks/header/__email/header__email.css");
+@import url("../blocks/main/main.css");
+@import url("../blocks/button/button.css");
+@import url("../blocks/button/_type/button_type_add.css");
+@import url("../blocks/button/_type/button_type_auth.css");
+
+@import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__info/profile__info.css");
+@import url("../blocks/profile/__name-wrapper/profile__name-wrapper.css");
+@import url("../blocks/profile/__name/profile__name.css");
+@import url("../blocks/profile/__occupation/profile__occupation.css");
+@import url("../blocks/profile/__edit-button/profile__edit-button.css");
+@import url("../blocks/profile/__edit-icon/profile__edit-icon.css");
+@import url("../blocks/profile/__add-icon/profile__add-icon.css");
+@import url("../blocks/profile/__new-card-button/profile__new-card-button.css");
+@import url("../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css");
+
+@import url("../blocks/cards/cards.css");
+@import url("../blocks/cards/__list/cards__list.css");
+@import url("../blocks/card/card.css");
+@import url("../blocks/card/__image/card__image.css");
+@import url("../blocks/card/__delete-icon/card__delete-icon.css");
+@import url("../blocks/card/__bottom-wrapper/card__bottom-wrapper.css");
+@import url("../blocks/card/__title/card__title.css");
+@import url("../blocks/card/__like-button/card__like-button.css");
+@import url("../blocks/card/__like-button/_active/card__like-button_active.css");
+@import url("../blocks/card/__like-counter/card__like-counter.css");
+@import url("../blocks/card/__likes-wrapper/card__likes-wrapper.css");
+
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__copyright/footer__copyright.css");
+
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_type/popup_type_show-card.css");
+@import url("../blocks/popup/__form/popup__form.css");
+@import url("../blocks/popup/_active/popup_active.css");
+@import url("../blocks/popup/__container/popup__container.css");
+@import url("../blocks/popup/__container/_type/popup__container_type_show-card.css");
+@import url("../blocks/popup/__image/popup__image.css");
+@import url("../blocks/popup/__image-description/popup__image-description.css");
+@import url("../blocks/popup/__title/popup__title.css");
+@import url("../blocks/popup/__title/_confirmation/popup__title_confirmation.css");
+@import url("../blocks/popup/__name/popup__name.css");
+@import url("../blocks/popup/__occupation/popup__occupation.css");
+@import url("../blocks/popup/__link/popup__link.css");
+@import url("../blocks/popup/__confirmation-button/popup__confirmation-button.css");
+@import url("../blocks/popup/__close-button/popup__close-button.css");
+
+@import url("../blocks/popup/__container/_type/popup__container_type_toolTip");
+@import url("../blocks/popup/_type/popup_type_toolTip.css");
+@import url("../blocks/popup/__tooltip-icon/popup__tooltip-icon.css");
+@import url("../blocks/popup/__tooltip-text/popup__tooltip-text.css");
+
+
+@import url("../blocks/button/_type/button_type_invalid.css");
+@import url("../blocks/input/input.css");
+@import url("../blocks/input/_error/input_error.css");
+@import url("../blocks/input/_hidden/input_hidden.css");
+@import url("../blocks/input/_type/input_type_empty.css");
+
+
+@import url("../blocks/message-error/message-error.css");
+
