@@ -17,6 +17,19 @@ export const Register = (props) => {
 		email: '',
 		password: '',
 	})
+	
+	const onCloseSuccess = useCallback((e) => {
+		if (e.target === e.currentTarget || e === 'manualClosing') {
+			navigate('/', { replace: true })
+			setIsSuccessActive(false)
+		}
+	}, [navigate])
+
+	const onCloseFail = useCallback((e) => {
+		if (e.target === e.currentTarget || e === 'manualClosing') {
+			setIsFailActive(false)
+		}
+	}, [])
 
 	useEffect(() => {
 		const closeByEscape = (e) => {
@@ -28,7 +41,7 @@ export const Register = (props) => {
 		return () => {
 			document.removeEventListener('keydown', closeByEscape);
 		}
-	}, [isFailActive, isSuccessActive])
+	}, [isFailActive, onCloseFail, onCloseSuccess, isSuccessActive])
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault()
@@ -37,8 +50,8 @@ export const Register = (props) => {
 			() => setIsFailActive(true),
 			() => setIsSuccessActive(true),
 		)
-
 	}
+	
 	const onChangeHandler = (e) => {
 		const { name, value } = e.target
 		setFormData({
@@ -46,17 +59,7 @@ export const Register = (props) => {
 			...{ [name]: value }
 		})
 	}
-	const onCloseSuccess = useCallback((e) => {
-		if (e.target === e.currentTarget || e === 'manualClosing') {
-			navigate('/', { replace: true })
-			setIsSuccessActive(false)
-		}
-	}, [])
-	const onCloseFail = useCallback((e) => {
-		if (e.target === e.currentTarget || e === 'manualClosing') {
-			setIsFailActive(false)
-		}
-	}, [])
+	
 
 	return (
 		<div className='page'>
