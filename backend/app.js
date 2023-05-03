@@ -1,5 +1,5 @@
 require('dotenv').config();
-const cors = require('cors')
+const cors = require('./middleware/cors-middleware')
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -23,7 +23,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors())
+app.use(cors);
 app.use(cookieParser());
 
 app.use(requestLogger)
