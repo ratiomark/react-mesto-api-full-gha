@@ -25,7 +25,7 @@ class AuthAPI {
 
 
 	signIn({ email, password }) {
-		console.log(`${this.baseURL}/signin`)
+		// console.log(`${this.baseURL}/signin`)
 		return this._request(`${this.baseURL}/signin`, {
 			method: "POST",
 			headers: this.headers,
@@ -37,8 +37,8 @@ class AuthAPI {
 	}
 
 	signUp({ email, password }) {
-		console.log(`${this.baseURL}/signup`)
-		console.log(email, password)
+		// console.log(`${this.baseURL}/signup`)
+		// console.log(email, password)
 		return this._request(`${this.baseURL}/signup`, {
 			method: "POST",
 			headers: this.headers,

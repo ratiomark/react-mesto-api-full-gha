@@ -52,7 +52,7 @@ export const Login = (props) => {
 			...{ [name]: value }
 		})
 	}
-	
+
 	const onCloseFail = (e) => {
 		if (e.target === e.currentTarget || e === 'manualClosing') {
 			setIsFailActive(false)
