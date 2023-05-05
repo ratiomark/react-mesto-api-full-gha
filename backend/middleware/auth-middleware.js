@@ -5,17 +5,17 @@ const { ApiError } = require('../Errors/Errors');
 const authMiddleware = (req, res, next) => {
 	try {
 		let { token } = req;
-		token = token?.split(' ')[1]
-    if (!token) return next(ApiError.Unauthorized());
+		// token = token?.split(' ')[1]
+		if (!token) return next(ApiError.Unauthorized());
 
 		const userId = jwt.verify(token, process.env.JWT_TOKEN_SECRET || 'secret_key');
-    req.userId = userId.id;
-    next();
-  } catch (error) {
-    if (error.message === 'jwt malformed') {
-      return next(ApiError.Unauthorized());
-    }
-    next(error);
-  }
+		req.userId = userId.id;
+		next();
+	} catch (error) {
+		if (error.message === 'jwt malformed') {
+			return next(ApiError.Unauthorized());
+		}
+		next(error);
+	}
 };
 module.exports = authMiddleware;

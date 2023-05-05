@@ -54,7 +54,7 @@ class AuthAPI {
 			method: "GET",
 			headers: {
 				...this.headers,
-				...{ "Authorization": `Bearer ${JWT}` }
+				...{ "token": `${JWT}` }
 			}
 		})
 	}
