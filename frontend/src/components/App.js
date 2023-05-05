@@ -22,7 +22,7 @@ function App() {
 	const [cards, setCards] = useState([])
 	const { userData, setUserData } = useContext(CurrentUserContext)
 	const { setToken, email } = useContext(TokenContext)
-	
+
 	const isOpen =
 		isEditAvatarPopupOpen ||
 		isEditProfilePopupOpen ||
@@ -47,9 +47,14 @@ function App() {
 
 	useEffect(() => {
 		api.headers.token = getTokenFromLS()
+		console.log(api)
 		api
 			.getInitialCard()
-			.then((res) => setCards(res))
+			.then((res) => {
+				console.log(res)
+				setCards(res.data)
+			}
+			)
 			.catch((error) =>
 				console.log(`Возникла ошибка. 
 				Название ошибки: ${error.name}. 
@@ -64,7 +69,7 @@ function App() {
 			.then((cardFromServer) => {
 				setCards((state) =>
 					state.map((stateCard) => {
-						return stateCard._id === card._id ? cardFromServer : stateCard
+						return stateCard._id === card._id ? cardFromServer.data : stateCard
 					})
 				)
 			})
@@ -92,7 +97,7 @@ function App() {
 		setIsLoading(true)
 		api
 			.editProfile(newUserData)
-			.then((res) => setUserData(res))
+			.then((res) => setUserData(res.data))
 			.then(onClose)
 			.catch((error) =>
 				console.log(`Возникла ошибка. 
@@ -106,7 +111,7 @@ function App() {
 		setIsLoading(true)
 		api
 			.updateAvatar(link)
-			.then((res) => setUserData(res))
+			.then((res) => setUserData(res.data))
 			.then(onClose)
 			.catch((error) =>
 				console.log(`Возникла ошибка. 
@@ -120,7 +125,7 @@ function App() {
 		setIsLoading(true)
 		api
 			.addCardRequest(cardData)
-			.then((res) => setCards((prev) => [res, ...prev]))
+			.then((res) => setCards((prev) => [res.data, ...prev]))
 			.then(onClose)
 			.catch(error => console.log(`Возникла ошибка. Информация об ошибке: ${error}`))
 			.finally(() => setIsLoading(false))
@@ -130,6 +135,7 @@ function App() {
 		setIsAddPlacePopupOpen((prev) => !prev)
 	}
 	const onEditAvatar = () => {
+
 		setIsEditAvatarPopupOpen((prev) => !prev)
 	}
 
@@ -138,6 +144,7 @@ function App() {
 	}
 
 	const onEditProfileClick = () => {
+		console.log('!!!!!!!!!!!!!!!!')
 		setIsEditProfilePopupOpen((prev) => !prev)
 	}
 
@@ -155,7 +162,7 @@ function App() {
 		}
 	}
 
-	const onLogOut = () => setToken('')
+	const onLogOut = () => localStorage.clear()
 
 	return (
 		<div className='page'>
@@ -181,10 +188,10 @@ function App() {
 				onClose={onClose}
 			/>
 
-			<Footer />
+
 
 			<EditProfilePopup
-				handleEditProfileSubmit={handleEditProfileSubmit}
+				// handleEditProfileSubmit={handleEditProfileSubmit}
 				isOpen={isEditProfilePopupOpen}
 				onClose={onClose}
 				isLoading={isLoading}
@@ -211,6 +218,7 @@ function App() {
 				onClose={onClose}
 				buttonText='Да'
 			/>
+			<Footer />
 		</div>
 	)
 }

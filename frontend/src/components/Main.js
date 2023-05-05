@@ -60,15 +60,18 @@ export const Main = (props) => {
 
 			<section className='cards'>
 				<ul className='cards__list'>
-					{cards?.map((card) => (
-						<Card
-							key={card._id}
-							card={card}
-							onCardClick={onCardClick}
-							handleCardLike={handleCardLike}
-							handleCardDelete={handleCardDelete}
-						/>
-					))}
+					{cards.length > 0
+						? cards.map((card) => (
+							<Card
+								key={card._id}
+								card={card}
+								onCardClick={onCardClick}
+								handleCardLike={handleCardLike}
+								handleCardDelete={handleCardDelete}
+							/>
+						))
+						: null
+					}
 				</ul>
 			</section>
 		</main>

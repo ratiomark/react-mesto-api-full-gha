@@ -15,7 +15,7 @@ const createUser = async (req, res, next) => {
 		});
 
 		const { password, ...otherData } = data._doc;
-		res.status(200).json({ ...otherData });
+		res.status(200).json({ data: { ...otherData } });
 	} catch (error) {
 		if (error.code === 11000) {
 			next(ApiError.Conflict());
@@ -107,7 +107,7 @@ const getUserData = async (req, res, next) => {
 		const { userId } = req;
 		const user = await User.findById(userId);
 		if (!user) throw ApiError.NotFound();
-		res.status(200).json({ message: user });
+		res.status(200).json({ data: user });
 	} catch (error) {
 		next(error);
 	}

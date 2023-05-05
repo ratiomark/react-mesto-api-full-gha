@@ -1,9 +1,9 @@
 import { createContext, useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { api } from '../utils/Api'
 import { auth } from '../utils/AuthAPI'
 import { getTokenFromLS } from '../utils/getTokenFromLS'
 import { setTokenToLS } from '../utils/setTokenToLS'
-
 export const TokenContext = createContext()
 
 export const TokenContextProvider = (props) => {
@@ -24,7 +24,7 @@ export const TokenContextProvider = (props) => {
 		if (token) {
 			auth.checkToken(token)
 				.then(res => {
-					console.log('Результат then в useEffect TokenContext ', res)
+					// console.log('Результат then в useEffect TokenContext ', res)
 					if (res.data.email) {
 						setEmail(res.data.email)
 						navigate('/', { replace: true })
@@ -32,7 +32,7 @@ export const TokenContextProvider = (props) => {
 				})
 				.catch(() => console.log("В хранилище нет токена"))
 		}
-	}, [])
+	}, [token, navigate])
 
 
 	useEffect(() => {

@@ -10,9 +10,15 @@ export const EditProfilePopup = (props) => {
 		onClose,
 		isLoading
 	} = props
-	
+
 	const { userData } = useContext(CurrentUserContext)
 	const { values, handleChange, setValues } = useForm({ name: '', about: '' })
+
+
+	useEffect(() => {
+		console.log('EditProfilePopup UserData,  ', userData)
+
+	}, [userData])
 
 	useEffect(() => {
 		setValues({ name: userData?.name, about: userData?.about })
@@ -37,7 +43,7 @@ export const EditProfilePopup = (props) => {
 				placeholder='Имя'
 				className='input popup__name'
 				name='name'
-				id='popup__name'
+				id='popup__name_profileEdit'
 				type='text'
 				required
 				minLength='2'
