@@ -4,7 +4,7 @@ const { ApiError } = require('../Errors/Errors');
 // eslint-disable-next-line consistent-return
 const authMiddleware = (req, res, next) => {
 	try {
-		let { token } = req;
+		let { token } = req.headers;
 		// token = token?.split(' ')[1]
 		if (!token) return next(ApiError.Unauthorized());
 
