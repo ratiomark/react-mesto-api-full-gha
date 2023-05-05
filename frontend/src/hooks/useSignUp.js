@@ -12,13 +12,10 @@ export function useSignUp() {
 		setIsLoading(true)
 		try {
 			let res = await auth.signUp(formData)
-			// await sleep(2000)
 			res = await auth.signIn(formData)
 			const token = res.token
 			api.headers.token = token
-			console.log('Токен ответа ', token)
 			const finalRes = await auth.checkToken(token)
-			console.log('финальный ответ ', finalRes)
 			setIsLoading(false)
 			setToken(token)
 			setEmail(finalRes.data.email)

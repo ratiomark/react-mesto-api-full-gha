@@ -15,10 +15,7 @@ export const CurrentUserProvider = (props) => {
 	useEffect(() => {
 		api
 			.getUserData()
-			.then(res => {
-				console.log('CurrentUserContext ответ от getUserData', res.data)
-				setUserData(res.data)
-			})
+			.then(res => setUserData(res.data))
 			.catch((error) =>
 				console.log(`Возникла ошибка. 
 				Название ошибки: ${error.name}. 

@@ -11,6 +11,7 @@ import { EditAvatarPopup } from './EditAvatarPopup'
 import { AddPlacePopup } from './AddPlacePopup'
 import { TokenContext } from '../contexts/TokenContext'
 import { getTokenFromLS } from '../utils/getTokenFromLS'
+import { consoleError } from '../utils/consoleError'
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -47,19 +48,10 @@ function App() {
 
 	useEffect(() => {
 		api.headers.token = getTokenFromLS()
-		console.log(api)
 		api
 			.getInitialCard()
-			.then((res) => {
-				console.log(res)
-				setCards(res.data)
-			}
-			)
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-				Название ошибки: ${error.name}. 
-				Текст ошибки: ${error.message}`)
-			)
+			.then((res) => setCards(res.data))
+			.catch(consoleError)
 	}, [])
 
 	const handleCardLike = (card) => {
@@ -73,11 +65,7 @@ function App() {
 					})
 				)
 			})
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-					Название ошибки: ${error.name}. 
-					Текст ошибки: ${error.message}`)
-			)
+			.catch(consoleError)
 	}
 
 	const handleCardDelete = (id) => {
@@ -86,11 +74,7 @@ function App() {
 			.then(() => {
 				setCards((state) => state.filter((card) => card._id !== id))
 			})
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-				Название ошибки: ${error.name}. 
-				Текст ошибки: ${error.message}`)
-			)
+			.catch(consoleError)
 	}
 
 	const handleEditProfileSubmit = (newUserData) => {
@@ -99,11 +83,7 @@ function App() {
 			.editProfile(newUserData)
 			.then((res) => setUserData(res.data))
 			.then(onClose)
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-				Название ошибки: ${error.name}. 
-				Текст ошибки: ${error.message}`)
-			)
+			.catch(consoleError)
 			.finally(() => setIsLoading(false))
 	}
 
@@ -113,11 +93,7 @@ function App() {
 			.updateAvatar(link)
 			.then((res) => setUserData(res.data))
 			.then(onClose)
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-				Название ошибки: ${error.name}. 
-				Текст ошибки: ${error.message}`)
-			)
+			.catch(consoleError)
 			.finally(() => setIsLoading(false))
 	}
 
@@ -127,7 +103,7 @@ function App() {
 			.addCardRequest(cardData)
 			.then((res) => setCards((prev) => [res.data, ...prev]))
 			.then(onClose)
-			.catch(error => console.log(`Возникла ошибка. Информация об ошибке: ${error}`))
+			.catch(consoleError)
 			.finally(() => setIsLoading(false))
 	}
 
@@ -144,7 +120,6 @@ function App() {
 	}
 
 	const onEditProfileClick = () => {
-		console.log('!!!!!!!!!!!!!!!!')
 		setIsEditProfilePopupOpen((prev) => !prev)
 	}
 
@@ -191,7 +166,7 @@ function App() {
 
 
 			<EditProfilePopup
-				// handleEditProfileSubmit={handleEditProfileSubmit}
+				handleEditProfileSubmit={handleEditProfileSubmit}
 				isOpen={isEditProfilePopupOpen}
 				onClose={onClose}
 				isLoading={isLoading}

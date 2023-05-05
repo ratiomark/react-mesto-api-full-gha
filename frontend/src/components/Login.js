@@ -34,7 +34,6 @@ export const Login = (props) => {
 		setIsLoading(true)
 		try {
 			const res = await auth.signIn(formData)
-			console.log('Это данные в логине ', res)
 			const { token } = res
 			setIsLoading(false)
 			setToken(token)
