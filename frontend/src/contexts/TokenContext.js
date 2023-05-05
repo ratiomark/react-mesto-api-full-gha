@@ -24,6 +24,7 @@ export const TokenContextProvider = (props) => {
 		if (token) {
 			auth.checkToken(token)
 				.then(res => {
+					console.log('Результат then в useEffect TokenContext ', res)
 					if (res.data.email) {
 						setEmail(res.data.email)
 						navigate('/', { replace: true })

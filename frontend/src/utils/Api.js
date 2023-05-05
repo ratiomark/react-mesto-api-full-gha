@@ -96,7 +96,6 @@ class Api {
 export const api = new Api({
   baseUrl,
   headers: {
-    authorization: myToken,
     'Content-Type': 'application/json'
   }
 });

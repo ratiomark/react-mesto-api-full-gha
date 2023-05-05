@@ -10,6 +10,7 @@ import { EditProfilePopup } from './EditProfilePopup'
 import { EditAvatarPopup } from './EditAvatarPopup'
 import { AddPlacePopup } from './AddPlacePopup'
 import { TokenContext } from '../contexts/TokenContext'
+import { getTokenFromLS } from '../utils/getTokenFromLS'
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -45,6 +46,7 @@ function App() {
 
 
 	useEffect(() => {
+		api.headers.token = getTokenFromLS()
 		api
 			.getInitialCard()
 			.then((res) => setCards(res))

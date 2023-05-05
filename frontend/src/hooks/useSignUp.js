@@ -11,7 +11,7 @@ export function useSignUp() {
 		setIsLoading(true)
 		try {
 			let res = await auth.signUp(formData)
-			await sleep(200)
+			await sleep(2000)
 			res = await auth.signIn(formData)
 			const token = res.token
 			console.log('Токен ответа ', token)
