@@ -14,12 +14,6 @@ export const EditProfilePopup = (props) => {
 	const { userData } = useContext(CurrentUserContext)
 	const { values, handleChange, setValues } = useForm({ name: '', about: '' })
 
-
-	useEffect(() => {
-		console.log('EditProfilePopup UserData,  ', userData)
-
-	}, [userData])
-
 	useEffect(() => {
 		setValues({ name: userData?.name, about: userData?.about })
 	}, [userData, isOpen, setValues])

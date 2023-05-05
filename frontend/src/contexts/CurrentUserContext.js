@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useMemo } from 'react'
 import { api } from '../utils/Api'
+import { consoleError } from '../utils/consoleError'
 
 export const CurrentUserContext = createContext()
 
@@ -16,11 +17,7 @@ export const CurrentUserProvider = (props) => {
 		api
 			.getUserData()
 			.then(res => setUserData(res.data))
-			.catch((error) =>
-				console.log(`Возникла ошибка. 
-				Название ошибки: ${error.name}. 
-				Текст ошибки: ${error.message}`)
-			)
+			.catch(consoleError)
 	}, [])
 
 	return (

@@ -18,7 +18,6 @@ class AuthAPI {
 	}
 
 	_request(url, options) {
-		console.log(url)
 		return fetch(url, options)
 			.then(this.handleFirstResponse)
 	}
@@ -37,8 +36,6 @@ class AuthAPI {
 	}
 
 	signUp({ email, password }) {
-		// console.log(`${this.baseURL}/signup`)
-		// console.log(email, password)
 		return this._request(`${this.baseURL}/signup`, {
 			method: "POST",
 			headers: this.headers,
@@ -50,7 +47,6 @@ class AuthAPI {
 	}
 
 	checkToken(JWT) {
-		console.log('токен прилетает в checkToken'  , JWT)
 		return this._request(`${this.baseURL}/users/me`, {
 			method: "GET",
 			headers: {
