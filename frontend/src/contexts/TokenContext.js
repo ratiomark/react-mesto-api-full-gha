@@ -1,6 +1,5 @@
 import { createContext, useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { api } from '../utils/Api'
 import { auth } from '../utils/AuthAPI'
 import { getTokenFromLS } from '../utils/getTokenFromLS'
 import { setTokenToLS } from '../utils/setTokenToLS'
@@ -8,7 +7,7 @@ export const TokenContext = createContext()
 
 export const TokenContextProvider = (props) => {
 	const { children } = props
-	const navigate = useNavigate
+	const navigate = useNavigate()
 
 	const [token, setToken] = useState(getTokenFromLS())
 	const [email, setEmail] = useState()

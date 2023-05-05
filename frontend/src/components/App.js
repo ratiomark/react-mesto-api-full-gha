@@ -22,7 +22,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [cards, setCards] = useState([])
 	const { userData, setUserData } = useContext(CurrentUserContext)
-	const { setToken, email } = useContext(TokenContext)
+	const { email } = useContext(TokenContext)
 
 	const isOpen =
 		isEditAvatarPopupOpen ||
@@ -137,7 +137,10 @@ function App() {
 		}
 	}
 
-	const onLogOut = () => localStorage.clear()
+	const onLogOut = () => {
+		localStorage.clear()
+		window.reload()
+	}
 
 	return (
 		<div className='page'>
@@ -158,12 +161,12 @@ function App() {
 				cards={cards}
 			/>
 
+			<Footer />
+
 			<ImagePopup
 				selectedCard={selectedCard}
 				onClose={onClose}
 			/>
-
-
 
 			<EditProfilePopup
 				handleEditProfileSubmit={handleEditProfileSubmit}
@@ -193,7 +196,7 @@ function App() {
 				onClose={onClose}
 				buttonText='Да'
 			/>
-			<Footer />
+
 		</div>
 	)
 }
