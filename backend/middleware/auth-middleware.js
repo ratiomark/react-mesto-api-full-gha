@@ -9,7 +9,7 @@ const authMiddleware = (req, res, next) => {
 		if (!token) return next(ApiError.Unauthorized());
 
 		const userId = jwt.verify(token, process.env.JWT_TOKEN_SECRET || 'secret_key');
-		req.userId = userId._id;
+		req.userId = userId.id;
 		next();
 	} catch (error) {
 		if (error.message === 'jwt malformed') {

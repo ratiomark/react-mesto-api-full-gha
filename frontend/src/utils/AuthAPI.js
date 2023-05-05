@@ -50,6 +50,7 @@ class AuthAPI {
 	}
 
 	checkToken(JWT) {
+		console.log('токен прилетает в checkToken'  , JWT)
 		return this._request(`${this.baseURL}/users/me`, {
 			method: "GET",
 			headers: {
