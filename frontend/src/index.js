@@ -5,7 +5,7 @@ import { CurrentUserProvider } from './contexts/CurrentUserContext'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './components/Router'
 import { TokenContextProvider } from './contexts/TokenContext'
-
+//  scp -r ./build/* mark@158.160.96.47:home/mark/react-mesto-api-full-gha/frontend/build
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<BrowserRouter>

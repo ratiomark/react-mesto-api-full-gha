@@ -15,8 +15,8 @@ class Api {
   handleError(error) {
     console.log(`Произошла ошибка: ${error.name}`)
     console.log(`Сообщение ошибки: ${error.message}`)
-  }
-  // Круто, спасибо
+	}
+	
   _request(url, options) {
     return fetch(url, options)
       .then(this.handleFirstResponse)
