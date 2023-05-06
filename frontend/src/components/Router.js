@@ -6,22 +6,23 @@ import { Register } from "./Register"
 import App from "./App"
 
 const routeConfig = {
-	MAIN: {
-		path: '/',
-		element: <App />,
-		authOnly: true
-	},
 	LOGIN: {
 		path: '/sign-in',
-		element: <Login />
+		element: <Login />,
 	},
 	REGISTER: {
 		path: 'sign-up',
 		element: <Register />,
 	},
+	MAIN: {
+		path: '/',
+		element: <App />,
+		authOnly: true
+	},
 	OTHER: {
 		path: '*',
-		element: <Navigate to="/" replace />
+		element: <Navigate to="/" replace />,
+		authOnly: true
 	}
 }
 

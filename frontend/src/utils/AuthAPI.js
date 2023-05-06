@@ -24,7 +24,6 @@ class AuthAPI {
 
 
 	signIn({ email, password }) {
-		// console.log(`${this.baseURL}/signin`)
 		return this._request(`${this.baseURL}/signin`, {
 			method: "POST",
 			headers: this.headers,
@@ -51,7 +50,7 @@ class AuthAPI {
 			method: "GET",
 			headers: {
 				...this.headers,
-				...{ "token": `${JWT}` }
+				authorization: JWT
 			}
 		})
 	}

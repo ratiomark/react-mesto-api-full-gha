@@ -1,8 +1,11 @@
 import { createContext, useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../utils/AuthAPI'
+import { consoleError } from '../utils/consoleError'
 import { getTokenFromLS } from '../utils/getTokenFromLS'
 import { setTokenToLS } from '../utils/setTokenToLS'
+
+
 export const TokenContext = createContext()
 
 export const TokenContextProvider = (props) => {
@@ -16,26 +19,23 @@ export const TokenContextProvider = (props) => {
 		token,
 		setToken,
 		email,
-		setEmail
-	}), [token, email])
-
-	useEffect(() => {
-		if (token) {
-			auth.checkToken(token)
-				.then(res => {
-					if (res.data.email) {
-						setEmail(res.data.email)
-						navigate('/', { replace: true })
-					}
-				})
-				.catch(() => console.log("В хранилище нет токена"))
-		}
-	}, [token, navigate])
-
+		setEmail,
+	}), [token, email,])
 
 	useEffect(() => {
 		setTokenToLS(token)
+		if (token) {
+			auth.checkToken(token)
+				.then(res => {
+					setEmail(res.data.email)
+					navigate('/', { replace: true })
+				})
+				.catch(consoleError)
+		} else {
+			console.log("В хранилище нет токена")
+		}
 	}, [token])
+
 
 	return (
 		<TokenContext.Provider value={dataAndSetter}>

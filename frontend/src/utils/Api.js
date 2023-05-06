@@ -1,101 +1,92 @@
-import { myToken, baseUrl } from './constants'
-
-class Api {
-  constructor({ baseUrl, headers }) {
-    this.baseURL = baseUrl
-    this.headers = headers
-  }
-
-  handleFirstResponse(res) {
-    if (res.ok) return res.json()
-    console.log("Похоже возникла проблемк а")
-    return Promise.reject(`Ошибка: ${res.status}`)
-  }
-
-  handleError(error) {
-    console.log(`Произошла ошибка: ${error.name}`)
-    console.log(`Сообщение ошибки: ${error.message}`)
+export class Api {
+	constructor({ baseUrl, headers }) {
+		this.baseURL = baseUrl
+		this.headers = headers
 	}
-	
-  _request(url, options) {
-    return fetch(url, options)
-      .then(this.handleFirstResponse)
-  }
 
-  getUserData() {
-    return this._request(`${this.baseURL}/users/me`, { headers: this.headers })
-  }
+	handleFirstResponse(res) {
+		if (res.ok) return res.json()
+		console.log("Похоже возникла проблемк а")
+		return Promise.reject(`Ошибка: ${res.status}`)
+	}
 
-  getInitialCard() {
-    return this._request(`${this.baseURL}/cards`, { headers: this.headers })
-  }
+	handleError(error) {
+		console.log(`Произошла ошибка: ${error.name}`)
+		console.log(`Сообщение ошибки: ${error.message}`)
+	}
 
-  editProfile({ name, about }) {
-    return this._request(`${this.baseURL}/users/me`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify({
-        name,
-        about
-      })
-    })
-  }
+	_request(url, options) {
+		return fetch(url, options)
+			.then(this.handleFirstResponse)
+	}
 
-  deleteCard(id) {
-    return this._request(`${this.baseURL}/cards/${id}`, {
-      method: "DELETE",
-      headers: this.headers,
-    })
-  }
+	getUserData() {
+		return this._request(`${this.baseURL}/users/me`, { headers: this.headers })
+	}
 
-  addCardRequest({ name, link }) {
-    return this._request(`${this.baseURL}/cards`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify({
-        name,
-        link
-      })
-    })
-  }
+	getInitialCard() {
+		return this._request(`${this.baseURL}/cards`, { headers: this.headers })
+	}
 
-  updateAvatar(avatar) {
-    return this._request(`${this.baseURL}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify({
-        avatar
-      })
-    })
-  }
+	editProfile({ name, about }) {
+		return this._request(`${this.baseURL}/users/me`, {
+			method: "PATCH",
+			headers: this.getHeaders(),
+			body: JSON.stringify({
+				name,
+				about
+			})
+		})
+	}
 
-  setLike(id) {
-    return this._request(`${this.baseURL}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this.headers,
-    })
-  }
+	deleteCard(id) {
+		return this._request(`${this.baseURL}/cards/${id}`, {
+			method: "DELETE",
+			headers: this.headers,
+		})
+	}
 
-  unsetLike(id) {
-    return this._request(`${this.baseURL}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this.headers,
-    })
-  }
+	addCardRequest({ name, link }) {
+		return this._request(`${this.baseURL}/cards`, {
+			method: "POST",
+			headers: this.headers,
+			body: JSON.stringify({
+				name,
+				link
+			})
+		})
+	}
 
-  changeLikeCardStatus(id, status) {
-    if (status) {
-      return this.unsetLike(id)
-    }
+	updateAvatar(avatar) {
+		return this._request(`${this.baseURL}/users/me/avatar`, {
+			method: "PATCH",
+			headers: this.headers,
+			body: JSON.stringify({
+				avatar
+			})
+		})
+	}
 
-    return this.setLike(id)
-  }
+	setLike(id) {
+		return this._request(`${this.baseURL}/cards/${id}/likes`, {
+			method: "PUT",
+			headers: this.headers,
+		})
+	}
+
+	unsetLike(id) {
+		return this._request(`${this.baseURL}/cards/${id}/likes`, {
+			method: "DELETE",
+			headers: this.headers,
+		})
+	}
+
+	changeLikeCardStatus(id, status) {
+		if (status) {
+			return this.unsetLike(id)
+		}
+
+		return this.setLike(id)
+	}
+
 }
-
-
-export const api = new Api({
-  baseUrl,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});

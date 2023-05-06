@@ -4,8 +4,7 @@ const { ApiError } = require('../Errors/Errors');
 // eslint-disable-next-line consistent-return
 const authMiddleware = (req, res, next) => {
 	try {
-		let { token } = req.headers;
-		// token = token?.split(' ')[1]
+		let token = req.headers.authorization;
 		if (!token) return next(ApiError.Unauthorized());
 
 		const userId = jwt.verify(token, process.env.JWT_TOKEN_SECRET || 'secret_key');

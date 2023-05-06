@@ -12,11 +12,12 @@ export const Main = (props) => {
 		onCardClick,
 		handleCardLike,
 		handleCardDelete,
-		cards
+		cards,
 	} = props
+
 	const { userData } = useContext(CurrentUserContext)
 
-	if (!userData) return null
+	if (!userData) return <p>Загрузка контента</p>
 
 	return (
 		<main className='main page__main'>

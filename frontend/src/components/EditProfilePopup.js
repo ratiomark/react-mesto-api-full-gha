@@ -10,7 +10,6 @@ export const EditProfilePopup = (props) => {
 		onClose,
 		isLoading
 	} = props
-
 	const { userData } = useContext(CurrentUserContext)
 	const { values, handleChange, setValues } = useForm({ name: '', about: '' })
 

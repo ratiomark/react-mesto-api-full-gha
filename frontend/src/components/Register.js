@@ -17,11 +17,11 @@ export const Register = (props) => {
 		email: '',
 		password: '',
 	})
-	
+
 	const onCloseSuccess = useCallback((e) => {
 		if (e.target === e.currentTarget || e === 'manualClosing') {
-			navigate('/', { replace: true })
 			setIsSuccessActive(false)
+			navigate('/', { replace: true })
 		}
 	}, [navigate])
 
@@ -51,7 +51,7 @@ export const Register = (props) => {
 			() => setIsSuccessActive(true),
 		)
 	}
-	
+
 	const onChangeHandler = (e) => {
 		const { name, value } = e.target
 		setFormData({
@@ -59,7 +59,7 @@ export const Register = (props) => {
 			...{ [name]: value }
 		})
 	}
-	
+
 
 	return (
 		<div className='page'>

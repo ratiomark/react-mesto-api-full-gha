@@ -4,5 +4,6 @@ import { TokenContext } from "../contexts/TokenContext"
 
 export const ProtectedRoute = ({ children }) => {
 	const { token } = useContext(TokenContext)
+	console.log(token)
 	return token ? children : <Navigate to='/sign-in' replace />
 }

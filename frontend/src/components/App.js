@@ -5,13 +5,12 @@ import { useContext, useEffect, useState, useCallback } from 'react'
 import { ImagePopup } from './ImagePopup'
 import { PopupWithForm } from './PopupWithForm'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import { api } from '../utils/Api'
 import { EditProfilePopup } from './EditProfilePopup'
 import { EditAvatarPopup } from './EditAvatarPopup'
 import { AddPlacePopup } from './AddPlacePopup'
 import { TokenContext } from '../contexts/TokenContext'
-import { getTokenFromLS } from '../utils/getTokenFromLS'
 import { consoleError } from '../utils/consoleError'
+import { ApiContext } from '../contexts/ApiContext'
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -23,6 +22,7 @@ function App() {
 	const [cards, setCards] = useState([])
 	const { userData, setUserData } = useContext(CurrentUserContext)
 	const { email } = useContext(TokenContext)
+	const api = useContext(ApiContext)
 
 	const isOpen =
 		isEditAvatarPopupOpen ||
@@ -41,18 +41,16 @@ function App() {
 			document.addEventListener('keydown', closeByEscape);
 			return () => {
 				document.removeEventListener('keydown', closeByEscape);
-			}
+			}	
 		}
 	}, [isOpen, closeByEscape])
 
-
 	useEffect(() => {
-		api.headers.token = getTokenFromLS()
 		api
 			.getInitialCard()
 			.then((res) => setCards(res.data))
 			.catch(consoleError)
-	}, [])
+	}, [api])
 
 	const handleCardLike = (card) => {
 		const isLiked = card.likes.some((i) => i._id === userData._id)
@@ -150,6 +148,7 @@ function App() {
 				email={email}
 				onClickHeaderLink={onLogOut}
 			/>
+
 			<Main
 				onEditProfile={onEditProfileClick}
 				onAddPlace={onAddPlace}

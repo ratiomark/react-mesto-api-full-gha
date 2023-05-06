@@ -8,7 +8,7 @@ import fail from "../images/fail.svg"
 
 export const Login = (props) => {
 	const navigate = useNavigate()
-	const { setToken, setEmail } = useContext(TokenContext)
+	const { setToken } = useContext(TokenContext)
 	const [isFailActive, setIsFailActive] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -37,7 +37,6 @@ export const Login = (props) => {
 			const { token } = res
 			setIsLoading(false)
 			setToken(token)
-			setEmail(formData.email)
 			navigate('/', { replace: true })
 		} catch (error) {
 			setIsLoading(false)
