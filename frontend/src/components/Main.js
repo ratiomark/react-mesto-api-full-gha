@@ -61,7 +61,7 @@ export const Main = (props) => {
 
 			<section className='cards'>
 				<ul className='cards__list'>
-					{cards.length > 0
+					{cards
 						? cards.map((card) => (
 							<Card
 								key={card._id}

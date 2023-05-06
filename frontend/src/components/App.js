@@ -8,7 +8,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { EditProfilePopup } from './EditProfilePopup'
 import { EditAvatarPopup } from './EditAvatarPopup'
 import { AddPlacePopup } from './AddPlacePopup'
-import { TokenContext } from '../contexts/TokenContext'
 import { consoleError } from '../utils/consoleError'
 import { ApiContext } from '../contexts/ApiContext'
 
@@ -21,7 +20,6 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [cards, setCards] = useState([])
 	const { userData, setUserData } = useContext(CurrentUserContext)
-	const { email } = useContext(TokenContext)
 	const api = useContext(ApiContext)
 
 	const isOpen =
@@ -41,7 +39,7 @@ function App() {
 			document.addEventListener('keydown', closeByEscape);
 			return () => {
 				document.removeEventListener('keydown', closeByEscape);
-			}	
+			}
 		}
 	}, [isOpen, closeByEscape])
 
@@ -145,7 +143,7 @@ function App() {
 			<Header
 				title={'Выйти'}
 				to={'/sign-in'}
-				email={email}
+				email={userData?.email ?? ''}
 				onClickHeaderLink={onLogOut}
 			/>
 

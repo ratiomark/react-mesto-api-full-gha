@@ -5,7 +5,6 @@ import { consoleError } from '../utils/consoleError'
 import { getTokenFromLS } from '../utils/getTokenFromLS'
 import { setTokenToLS } from '../utils/setTokenToLS'
 
-
 export const TokenContext = createContext()
 
 export const TokenContextProvider = (props) => {
@@ -23,8 +22,8 @@ export const TokenContextProvider = (props) => {
 	}), [token, email,])
 
 	useEffect(() => {
-		setTokenToLS(token)
 		if (token) {
+			setTokenToLS(token)
 			auth.checkToken(token)
 				.then(res => {
 					setEmail(res.data.email)
@@ -34,7 +33,7 @@ export const TokenContextProvider = (props) => {
 		} else {
 			console.log("В хранилище нет токена")
 		}
-	}, [token])
+	}, [token, navigate])
 
 
 	return (

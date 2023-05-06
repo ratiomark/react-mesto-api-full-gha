@@ -6,8 +6,7 @@ export class Api {
 
 	handleFirstResponse(res) {
 		if (res.ok) return res.json()
-		console.log("Похоже возникла проблемк а")
-		return Promise.reject(`Ошибка: ${res.status}`)
+		return Promise.reject(`Ошибка в API: ${res.status}`)
 	}
 
 	handleError(error) {

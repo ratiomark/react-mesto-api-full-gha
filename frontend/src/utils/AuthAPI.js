@@ -8,8 +8,7 @@ class AuthAPI {
 
 	handleFirstResponse(res) {
 		if (res.ok) return res.json()
-		console.log("Похоже возникла проблемка")
-		return Promise.reject(`Ошибка: ${res.status}`)
+		return Promise.reject(`Ошибка в AuthAPI: ${res.status}`)
 	}
 
 	handleError(error) {
