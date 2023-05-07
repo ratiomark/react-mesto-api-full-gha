@@ -17,7 +17,7 @@ const createCard = async (req, res, next) => {
     const { userId } = req;
 
     const data = await Card.create({ name, link, owner: userId });
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (err) {
     next(err);
   }
@@ -32,7 +32,7 @@ const deleteCard = async (req, res, next) => {
     if (!card) throw ApiError.NotFound();
     if (userId !== card.owner.toString()) throw ApiError.Forbidden();
 
-    const data = await Card.findByIdAndDelete({ _id: cardId });
+    const data = await card.deleteOne();
 
     res.send({ data });
   } catch (err) {

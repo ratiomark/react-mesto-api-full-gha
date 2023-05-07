@@ -13,6 +13,10 @@ class ApiError extends Error {
     return new ApiError(404, message);
   }
 
+  static InvalidRoute(message = 'Такой путь не существует') {
+    return new ApiError(404, message);
+  }
+
   static Conflict(message = 'Пользователь с таким имейлом уже существует') {
     return new ApiError(409, message);
   }
