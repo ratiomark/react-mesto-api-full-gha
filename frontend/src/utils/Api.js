@@ -30,7 +30,7 @@ export class Api {
 	editProfile({ name, about }) {
 		return this._request(`${this.baseURL}/users/me`, {
 			method: "PATCH",
-			headers: this.getHeaders(),
+			headers: this.headers,
 			body: JSON.stringify({
 				name,
 				about

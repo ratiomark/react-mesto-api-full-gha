@@ -77,7 +77,7 @@ function App() {
 		setIsLoading(true)
 		api
 			.editProfile(newUserData)
-			.then((res) => setUserData(res.data))
+			.then((res) => setUserData(res.data)) 
 			.then(onClose)
 			.catch(consoleError)
 			.finally(() => setIsLoading(false))

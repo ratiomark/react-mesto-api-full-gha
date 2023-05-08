@@ -2,6 +2,13 @@
 const User = require('../models/users');
 const { ApiError } = require('../Errors/Errors');
 
+const findUserById = async (req) => {
+  const { userId } = req;
+  const user = await User.findById(userId);
+  if (!user) throw ApiError.NotFound();
+  return user;
+};
+
 const updateUser = async (req, updateType = 'main') => {
   let data;
   let userId;
@@ -30,4 +37,4 @@ const updateUser = async (req, updateType = 'main') => {
   return data;
 };
 
-module.exports = { updateUser };
+module.exports = { updateUser, findUserById };

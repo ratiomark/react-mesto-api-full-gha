@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/users');
 const { ApiError } = require('../Errors/Errors');
-const { updateUser } = require('../utils/updateUser');
+const { updateUser, findUserById } = require('../utils/updateUser');
 
 const createUser = async (req, res, next) => {
   try {
@@ -70,9 +70,7 @@ const getUserById = async (req, res, next) => {
 
 const getUserData = async (req, res, next) => {
   try {
-    const { userId } = req;
-    const user = await User.findById(userId);
-    if (!user) throw ApiError.NotFound();
+    const user = await findUserById(req);
     res.status(200).json({ data: user });
   } catch (error) {
     next(error);
@@ -82,15 +80,6 @@ const getUserData = async (req, res, next) => {
 const updateUserProfile = async (req, res, next) => {
   try {
     const data = await updateUser(req, 'main');
-    // const { name, about } = req.body;
-
-    // const { userId } = req;
-    // const data = await User.findByIdAndUpdate(
-    //   userId,
-    //   { name, about },
-    //   { new: true, runValidators: true },
-    // );
-    // if (!data) throw ApiError.BadRequest();
     res.send({ data });
   } catch (error) {
     next(error);
@@ -100,16 +89,6 @@ const updateUserProfile = async (req, res, next) => {
 const updateUserAvatar = async (req, res, next) => {
   try {
     const data = await updateUser(req, 'avatar');
-    // const { avatar } = req.body;
-
-    // const { userId } = req;
-    // const data = await User.findByIdAndUpdate(
-    //   userId,
-    //   { avatar },
-    //   { new: true, runValidators: true },
-    // );
-
-    // if (!data) throw ApiError.BadRequest();
     res.send({ data });
   } catch (error) {
     next(error);
